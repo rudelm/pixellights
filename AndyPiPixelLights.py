@@ -7,7 +7,7 @@
 #
 # Hardware: WS2801 pixels, CLOCK=RPi23; Data=RPi19, GND=RpiGND, +5v=Rpi+5v
 
-import RPi.GPIO as GPIO, image, time, os, sys
+import RPi.GPIO as GPIO, Image, time, os, sys
 
 class AndyPiPixelLights:
  # Configurable values
