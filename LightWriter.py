@@ -23,6 +23,7 @@ class LightWriter:
     # Alternatively specify a hardware SPI connection on /dev/spidev0.0:
     SPI_PORT   = 0
     SPI_DEVICE = 0
+    pixels = Adafruit_WS2801.WS2801Pixels(PIXEL_COUNT, spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
 
     # Configurable values
     filename = "hello.png"
@@ -48,10 +49,9 @@ class LightWriter:
 
     def main(self):
         try:
-            pixels = Adafruit_WS2801.WS2801Pixels(PIXEL_COUNT, spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
             # Clear all the pixels to turn them off.
-            pixels.clear()
-            pixels.show()  # Make sure to call show() after changing any pixels!
+            self.pixels.clear()
+            self.pixels.show()  # Make sure to call show() after changing any pixels!
             self.displayFile(filename, pixels, 1)
     
         except KeyboardInterrupt:
