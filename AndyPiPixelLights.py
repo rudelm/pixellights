@@ -11,7 +11,7 @@ import RPi.GPIO as GPIO, Image, time, os, sys
 
 class AndyPiPixelLights:
  # Configurable values
- filename  = "hello.png"
+ filename = "hello.png"
 
  # import RPi.GPIO as GPIO, time, os
  NUMBER_OF_PIXELS=18 # set number of pixels in your strip
@@ -35,7 +35,7 @@ class AndyPiPixelLights:
  SPIDO = 19 # The SPI data line (MOSI) on the raspberry pi, pin 19
  ledpixels = [0] * NUMBER_OF_PIXELS
 
- def loadFile(filename):
+ def loadFile(self, filename):
 	 # load image in RGB format and get dimensions:
 	print "Loading file " + filename
 	img       = Image.open(filename).convert("RGB")
@@ -54,7 +54,7 @@ class AndyPiPixelLights:
 	return column
 
  def displayFile(self, filename):
-	 column = loadFile(self, filename)
+	 column = self.loadFile(filename)
 	 print "Displaying file " + filename
 	 for x in range(width):
                 spidev.write(column[x])
@@ -119,7 +119,7 @@ class AndyPiPixelLights:
 
  def main(self):
    try:  
-	self.displayFile(self, filename)
+	self.displayFile(self.filename)
     self.colorwipe(self.ledpixels, self.Color(255, 0, 0), 0.05)
     self.colorwipe(self.ledpixels, self.Color(0, 255, 0), 0.05)
     self.colorwipe(self.ledpixels, self.Color(0, 0, 255), 0.05)
