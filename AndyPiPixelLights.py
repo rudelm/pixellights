@@ -105,8 +105,8 @@ class AndyPiPixelLights:
                # (thats the i / strip.numPixels() part)
                # Then add in j which makes the colors go around per pixel
                # the % 96 is to make the wheel cycle around       
-    self.writestrip(pixels)
-    time.sleep(wait)
+               self.writestrip(pixels)
+               time.sleep(wait)
  
  def cls(self, pixels):
     for i in range(len(pixels)):
