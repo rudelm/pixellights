@@ -35,7 +35,7 @@ class AndyPiPixelLights:
  SPIDO = 19 # The SPI data line (MOSI) on the raspberry pi, pin 19
  ledpixels = [0] * NUMBER_OF_PIXELS
 
- def displayFile(self, filename):
+ def displayFile(self, filename, ledpixels):
     spidev = file("/dev/spidev0.0", "w")
     # load image in RGB format and get dimensions:
     print "Loading file " + filename
@@ -46,25 +46,13 @@ class AndyPiPixelLights:
     print "%dx%d pixels" % img.size
     # To do: add resize here if image is not desired height
 
-    # Create list of bytearrays, one for each column of image.
-    # R, G, B byte per pixel
-    print "Allocating..."
-    column = [0 for x in range(width)]
-    for x in range(width):
-        column[x] = bytearray(height * 3)
     print "Assigning color information..."
     for x in range(width):
         for y in range(height):
             r, g, b = img.getpixel((x, y))
-            print r, g, b
-            column[x][y] = r
-            column[x][y+1] = g
-            column[x][y+2] = b
-    print "Displaying file " + filename
-    for x in range(width):
-        spidev.write(column[x])
-        spidev.flush()
-    time.sleep(0.001)
+            ledpixels[y] = self.Color(r, g, b)
+        self.writestrip(ledpixels)
+        time.sleep(1)
     time.sleep(0.5)
 
  def writestrip(self, pixels):
@@ -124,11 +112,11 @@ class AndyPiPixelLights:
 
  def main(self):
    try:  
-    self.displayFile(self.filename)
-    self.colorwipe(self.ledpixels, self.Color(255, 0, 0), 0.05)
-    self.colorwipe(self.ledpixels, self.Color(0, 255, 0), 0.05)
-    self.colorwipe(self.ledpixels, self.Color(0, 0, 255), 0.05)
-    self.rainbowCycle(self.ledpixels, 0.00)
+    self.displayFile(self.filename, self.ledpixels)
+    #self.colorwipe(self.ledpixels, self.Color(255, 0, 0), 0.05)
+    #self.colorwipe(self.ledpixels, self.Color(0, 255, 0), 0.05)
+    #self.colorwipe(self.ledpixels, self.Color(0, 0, 255), 0.05)
+    #self.rainbowCycle(self.ledpixels, 0.00)
     self.cls(self.ledpixels)
    
    except KeyboardInterrupt:
