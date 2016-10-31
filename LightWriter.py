@@ -53,6 +53,9 @@ class LightWriter:
             self.pixels.clear()
             self.pixels.show()  # Make sure to call show() after changing any pixels!
             self.displayFile(self.filename, self.pixels, 1)
+            self.pixels.clear()
+            self.pixels.show()
+            sys.exit(0)
     
         except KeyboardInterrupt:
             pixels.clear()
