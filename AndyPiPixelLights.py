@@ -60,7 +60,7 @@ class AndyPiPixelLights:
                 spidev.write(column[x])
                 spidev.flush()
 		time.sleep(0.001)
-	time.sleep(0.5)
+	 time.sleep(0.5)
 
  def writestrip(self, pixels):
 	spidev = file("/dev/spidev0.0", "w")
