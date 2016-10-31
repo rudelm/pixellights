@@ -3,12 +3,15 @@
 # Title:      WS2801 SPI control class for Raspberry Pi
 # Author:     AndyPi (http://andypi.co.uk/)
 # Based on:   Adafruit https://raw.githubusercontent.com/adafruit/Adafruit-Raspberry-Pi-Python-Code/master/Adafruit_LEDpixels/Adafruit_LEDpixels.py
+# added https://learn.adafruit.com/light-painting-with-raspberry-pi/software fileimport
 #
 # Hardware: WS2801 pixels, CLOCK=RPi23; Data=RPi19, GND=RpiGND, +5v=Rpi+5v
 
-import RPi.GPIO as GPIO, time, os, sys
+import RPi.GPIO as GPIO, image, time, os, sys
 
 class AndyPiPixelLights:
+ # Configurable values
+ filename  = "hello.png"
 
  # import RPi.GPIO as GPIO, time, os
  NUMBER_OF_PIXELS=18 # set number of pixels in your strip
@@ -31,6 +34,33 @@ class AndyPiPixelLights:
  SPICLK = 23 # The SPI clock pin on the raspberry pi, pin 23
  SPIDO = 19 # The SPI data line (MOSI) on the raspberry pi, pin 19
  ledpixels = [0] * NUMBER_OF_PIXELS
+
+ def loadFile(filename):
+	 # load image in RGB format and get dimensions:
+	print "Loading file " + filename
+	img       = Image.open(filename).convert("RGB")
+	pixels    = img.load()
+	width     = img.size[0]
+	height    = img.size[1]
+	print "%dx%d pixels" % img.size
+	# To do: add resize here if image is not desired height
+
+	# Create list of bytearrays, one for each column of image.
+	# R, G, B byte per pixel
+	print "Allocating..."
+	column = [0 for x in range(width)]
+	for x in range(width):
+		column[x] = bytearray(height * 3)
+	return column
+
+ def displayFile(self, filename):
+	 column = loadFile(self, filename)
+	 print "Displaying file " + filename
+	 for x in range(width):
+                spidev.write(column[x])
+                spidev.flush()
+		time.sleep(0.001)
+	time.sleep(0.5)
 
  def writestrip(self, pixels):
 	spidev = file("/dev/spidev0.0", "w")
@@ -89,6 +119,7 @@ class AndyPiPixelLights:
 
  def main(self):
    try:  
+	displayFile(self, filename)
     self.colorwipe(self.ledpixels, self.Color(255, 0, 0), 0.05)
     self.colorwipe(self.ledpixels, self.Color(0, 255, 0), 0.05)
     self.colorwipe(self.ledpixels, self.Color(0, 0, 255), 0.05)
