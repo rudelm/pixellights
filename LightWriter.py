@@ -52,7 +52,7 @@ class LightWriter:
             # Clear all the pixels to turn them off.
             self.pixels.clear()
             self.pixels.show()  # Make sure to call show() after changing any pixels!
-            self.displayFile(filename, pixels, 1)
+            self.displayFile(self.filename, self.pixels, 1)
     
         except KeyboardInterrupt:
             pixels.clear()
