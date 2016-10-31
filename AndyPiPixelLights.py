@@ -99,13 +99,13 @@ class AndyPiPixelLights:
  def rainbowCycle(self, pixels, wait):
     for j in range(256): # one cycle of all 256 colors in the wheel
            for i in range(len(pixels)):
- # tricky math! we use each pixel as a fraction of the full 96-color wheel
- # (thats the i / strip.numPixels() part)
- # Then add in j which makes the colors go around per pixel
- # the % 96 is to make the wheel cycle around
-              self.setpixelcolor(pixels, i, self.Wheel( ((i * 256 / len(pixels)) + j) % 256) )
-       self.writestrip(pixels)
-       time.sleep(wait)
+               self.setpixelcolor(pixels, i, self.Wheel( ((i * 256 / len(pixels)) + j) % 256) )
+               # tricky math! we use each pixel as a fraction of the full 96-color wheel
+               # (thats the i / strip.numPixels() part)
+               # Then add in j which makes the colors go around per pixel
+               # the % 96 is to make the wheel cycle around       
+    self.writestrip(pixels)
+    time.sleep(wait)
  
  def cls(self, pixels):
     for i in range(len(pixels)):
