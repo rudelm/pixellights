@@ -52,6 +52,14 @@ class AndyPiPixelLights:
     column = [0 for x in range(width)]
     for x in range(width):
         column[x] = bytearray(height * 3)
+    print "Assigning color information..."
+    for x in range(width):
+        for y in range(height):
+            r, g, b = img.getpixel((x, y))
+            print r, g, b
+            column[x][y] = r
+            column[x][y+1] = g
+            column[x][y+2] = b
     print "Displaying file " + filename
     for x in range(width):
         spidev.write(column[x])
