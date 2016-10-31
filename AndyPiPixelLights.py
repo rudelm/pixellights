@@ -35,7 +35,7 @@ class AndyPiPixelLights:
  SPIDO = 19 # The SPI data line (MOSI) on the raspberry pi, pin 19
  ledpixels = [0] * NUMBER_OF_PIXELS
 
- def loadFile(self, filename):
+ def displayFile(self, filename):
 	 # load image in RGB format and get dimensions:
 	print "Loading file " + filename
 	img       = Image.open(filename).convert("RGB")
@@ -51,16 +51,12 @@ class AndyPiPixelLights:
 	column = [0 for x in range(width)]
 	for x in range(width):
 		column[x] = bytearray(height * 3)
-	return column
-
- def displayFile(self, filename):
-	 column = self.loadFile(filename)
-	 print "Displaying file " + filename
-	 for x in range(width):
-                spidev.write(column[x])
-                spidev.flush()
-		time.sleep(0.001)
-	 time.sleep(0.5)
+	print "Displaying file " + filename
+	for x in range(width):
+			spidev.write(column[x])
+			spidev.flush()
+	time.sleep(0.001)
+	time.sleep(0.5)
 
  def writestrip(self, pixels):
 	spidev = file("/dev/spidev0.0", "w")
