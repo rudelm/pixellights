@@ -28,18 +28,11 @@ class LightWriter:
     # Configurable values
     filename = "hello.png"
 
-    # see http://stackoverflow.com/a/33507138/831825
-    def removeAlpha(self, image):
-        background = Image.new("RGBA", image.size, (255, 255, 255))
-        alpha_composite = Image.alpha_composite(background, image)
-        return alpha_composite
-
     def displayFile(self, filename, pixels, wait = 0):
         spidev = file("/dev/spidev0.0", "w")
         # load image in RGB format and get dimensions:
         print "Loading file " + filename
-        #img       = Image.open(filename).convert("RGB")
-        img       = self.removeAlpha(Image.open(filename).convert("RGBA"))
+        img       = Image.open(filename).convert("RGB")
         width     = img.size[0]
         height    = img.size[1]
         print "%dx%d pixels" % img.size
