@@ -119,7 +119,7 @@ class AndyPiPixelLights:
 
  def main(self):
    try:  
-	displayFile(self, filename)
+	self.displayFile(self, filename)
     self.colorwipe(self.ledpixels, self.Color(255, 0, 0), 0.05)
     self.colorwipe(self.ledpixels, self.Color(0, 255, 0), 0.05)
     self.colorwipe(self.ledpixels, self.Color(0, 0, 255), 0.05)
