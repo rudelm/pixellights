@@ -36,7 +36,8 @@ class AndyPiPixelLights:
  ledpixels = [0] * NUMBER_OF_PIXELS
 
  def displayFile(self, filename):
-     # load image in RGB format and get dimensions:
+    spidev = file("/dev/spidev0.0", "w")
+    # load image in RGB format and get dimensions:
     print "Loading file " + filename
     img       = Image.open(filename).convert("RGB")
     pixels    = img.load()
