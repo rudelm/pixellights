@@ -14,7 +14,7 @@ class AndyPiPixelLights:
  filename = "hello.png"
 
  # import RPi.GPIO as GPIO, time, os
- NUMBER_OF_PIXELS=18 # set number of pixels in your strip
+ NUMBER_OF_PIXELS=50 # set number of pixels in your strip
  DEBUG = 1
  GPIO.setmode(GPIO.BCM)
 
