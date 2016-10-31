@@ -28,7 +28,8 @@ class LightWriter:
     # Configurable values
     filename = "hello.png"
 
-    def removeAlpha(image):
+    def removeAlpha(self, image):
+        image.load() # required for split
         background = Image.new("RGB", image.size, (255, 255, 255))
         background.paste(image, mask=image.split()[3]) # 3 is the alpha channel
         return background
