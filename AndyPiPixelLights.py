@@ -53,8 +53,8 @@ class AndyPiPixelLights:
 		column[x] = bytearray(height * 3)
 	print "Displaying file " + filename
 	for x in range(width):
-			spidev.write(column[x])
-			spidev.flush()
+		spidev.write(column[x])
+		spidev.flush()
 	time.sleep(0.001)
 	time.sleep(0.5)
 
@@ -108,9 +108,9 @@ class AndyPiPixelLights:
 	   time.sleep(wait)
  
  def cls(self, pixels):
-          for i in range(len(pixels)):
-                self.setpixelcolor(pixels, i, self.Color(0,0,0))
-                self.writestrip(pixels)
+	for i in range(len(pixels)):
+		self.setpixelcolor(pixels, i, self.Color(0,0,0))
+		self.writestrip(pixels)
 
 
  def main(self):
