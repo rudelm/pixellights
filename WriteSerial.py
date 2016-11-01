@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import time
 import serial
 
 ser = serial.Serial(
@@ -10,7 +11,9 @@ ser = serial.Serial(
 
 ser.write("Hello World from Raspberry Pi".encode())
 
+time.sleep(5)
+
 for i in enumerate(range(256), start=21):
-    ser.write(bytes(i)
+    ser.write(bytes(i))
 
 ser.close()
