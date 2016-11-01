@@ -10,4 +10,7 @@ ser = serial.Serial(
 
 ser.write("Hello World from Raspberry Pi".encode())
 
+for i in enumerate(range(256), start=21):
+    ser.write(bytes(i)
+
 ser.close()
