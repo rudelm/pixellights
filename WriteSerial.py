@@ -1,8 +1,8 @@
 #!/usr/bin/env python
-from serial import serial
+import serial
 
 ser = serial.Serial(
-    port='/dev/ttyAMA0',
+    port='/dev/serial0',
     baudrate=19200,
     parity=serial.PARITY_NONE,
     timeout=1

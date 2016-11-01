@@ -9,4 +9,4 @@ Updated to use code from:
 
 Don't forget to install the library with 'sudo pip install adafruit-ws2801'.
 
-For writing serial data on the pi you'll need to use 'sudo apt-get install python-serial' first.
+For writing serial data on the pi you'll need to diable the serial console first. See http://spellfoundry.com/2016/05/29/configuring-gpio-serial-port-raspbian-jessie-including-pi-3/ for more details.
