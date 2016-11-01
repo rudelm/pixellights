@@ -7,7 +7,6 @@ ser = serial.Serial(
     parity=serial.PARITY_NONE,
     timeout=1
 )
-ser.open()
 
 ser.write("Hello World from Raspberry Pi".encode())
 
